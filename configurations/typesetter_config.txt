@@ -1,0 +1,3 @@
+{"1": "Down Arrow", "0": "Up Arrow", "3": "Left Arrow", "2": "Right Arrow"}
+{"1": "s", "0": "w", "3": "a", "2": "d"}
+{"1": "AltGr", "0": "Shift", "2": "Space"}

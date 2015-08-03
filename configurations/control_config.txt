@@ -1,0 +1,3 @@
+{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
+{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
+{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
