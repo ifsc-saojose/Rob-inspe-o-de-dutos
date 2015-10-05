@@ -8,7 +8,7 @@ _sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 _porta_serial = serial.Serial()
 
 
-def Set_Address(UDP_IP='172.18.131.136', UDP_PORT=5505):
+def Set_Address(UDP_IP='172.18.131.137', UDP_PORT=5505):
     #_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)    # UDP
     _sock.bind((UDP_IP, UDP_PORT))
 
@@ -72,11 +72,3 @@ def Serial_Open(porta, baud_rate):
 
 def Serial_Read():
     return _porta_serial.read()
-
-
-def comand_decipher(value):
-    robo = {"M_UP": None, "M_DOWN": None, "M_RIGHT": None, "M_LEFT": None}
-    camera = {"M_UP": None, "M_DOWN": None, "M_RIGHT": None, "M_LEFT": None}
-
-    if(value == robo["M_UP"]):
-        print("")

@@ -1,3 +1,1 @@
-{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
-{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
-{"0": "Funciona", "1": "Continua Funcionando", "2": "Ainda Funcionando", "3": "Tudocerto"}
+{"A": ["is_button", 0], "right": ["is_axis", 0, 1], "up": ["is_axis", 1, -1], "L": ["is_button", 4], "down": ["is_axis", 1, 1], "start": ["is_button", 9], "B": ["is_button", 2], "Y": ["is_button", 11], "X": ["is_button", 1], "R": ["is_button", 5], "left": ["is_button", 3]}

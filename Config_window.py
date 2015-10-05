@@ -3,8 +3,10 @@ import PyQt4.QtGui as Gui
 import PyQt4.QtCore as Core
 #import Actions
 import simplejson
+import pygame
 from PyQt4 import uic
 
+pygame.init()
 (Ui_ConfigWindow, QConfigWindow) = uic.loadUiType('GUI/Config_Window.ui')
 
 
@@ -16,28 +18,28 @@ class Config_window(QConfigWindow):
         QConfigWindow.__init__(self, parent)
         self.ui = Ui_ConfigWindow()
         self.ui.setupUi(self)
-        self.ui.MR_Control_ComboBox.currentIndexChanged.connect(self.MR_Control_Refresh)
-        self.ui.MC_Control_ComboBox.currentIndexChanged.connect(self.MC_Control_Refresh)
-        self.ui.Others_Control_ComboBox.currentIndexChanged.connect(self.Others_Control_Refresh)
-        self.ui.MR_Control_Button.clicked.connect(self.MR_Control_Config)
-        self.ui.MC_Control_Button.clicked.connect(self.MC_Control_Config)
-        self.ui.Others_Control_Button.clicked.connect(self.Others_Control_Config)
+        #self.ui.MR_Control_ComboBox.currentIndexChanged.connect(self.MR_Control_Refresh)
+        #self.ui.MC_Control_ComboBox.currentIndexChanged.connect(self.MC_Control_Refresh)
+        #self.ui.Others_Control_ComboBox.currentIndexChanged.connect(self.Others_Control_Refresh)
+        #self.ui.MR_Control_Button.clicked.connect(self.MR_Control_Config)
+        #self.ui.MC_Control_Button.clicked.connect(self.MC_Control_Config)
+        #self.ui.Others_Control_Button.clicked.connect(self.Others_Control_Config)
         self.ui.MR_TypeSetter_ComboBox.currentIndexChanged.connect(self.MR_TypeSetter_Refresh)
         self.ui.MC_TypeSetter_ComboBox.currentIndexChanged.connect(self.MC_TypeSetter_Refresh)
         self.ui.Others_TypeSetter_ComboBox.currentIndexChanged.connect(self.Others_TypeSetter_Refresh)
         self.ui.MR_TypeSetter_Button.clicked.connect(self.MR_TypeSetter_Config)
         self.ui.MC_TypeSetter_Button.clicked.connect(self.MC_TypeSetter_Config)
         self.ui.Others_TypeSetter_Button.clicked.connect(self.Others_TypeSetter_Config)
-        self.ui.Control_ButtonBox.button(Gui.QDialogButtonBox.Cancel).clicked.connect(self.close)
-        self.ui.Control_ButtonBox.button(Gui.QDialogButtonBox.Save).clicked.connect(self.control_Save_Configs)
+        #self.ui.Control_ButtonBox.button(Gui.QDialogButtonBox.Cancel).clicked.connect(self.close)
+        #self.ui.Control_ButtonBox.button(Gui.QDialogButtonBox.Save).clicked.connect(self.control_Save_Configs)
         self.ui.TypeSetter_ButtonBox.button(Gui.QDialogButtonBox.Cancel).clicked.connect(self.close)
         self.ui.TypeSetter_ButtonBox.button(Gui.QDialogButtonBox.Save).clicked.connect(self.typesetter_Save_Configs)
         self.load_Configs()
-        self.MR_Control_Refresh()
+        #self.MR_Control_Refresh()
         self.MR_TypeSetter_Refresh()
-        self.MC_Control_Refresh()
+        #self.MC_Control_Refresh()
         self.MC_TypeSetter_Refresh()
-        self.Others_Control_Refresh()
+        #self.Others_Control_Refresh()
         self.Others_TypeSetter_Refresh()
         self.ui.label.setFocus(True)
 
@@ -64,17 +66,6 @@ class Config_window(QConfigWindow):
 
 # As funções abaixo atualizão o texto do botão conforme a opção selecionada na
 # ComboBox
-    def MR_Control_Refresh(self):
-        dic_aux = self._control_config_options[0]
-        self.ui.MR_Control_Button.setText(dic_aux[str(self.ui.MR_Control_ComboBox.currentIndex())])
-
-    def MC_Control_Refresh(self):
-        dic_aux = self._control_config_options[1]
-        self.ui.MC_Control_Button.setText(dic_aux[str(self.ui.MC_Control_ComboBox.currentIndex())])
-
-    def Others_Control_Refresh(self):
-        dic_aux = self._control_config_options[2]
-        self.ui.Others_Control_Button.setText(dic_aux[str(self.ui.Others_Control_ComboBox.currentIndex())])
 
     def MR_TypeSetter_Refresh(self):
         dic_aux = self._typesetter_config_options[0]
@@ -90,39 +81,6 @@ class Config_window(QConfigWindow):
 
 # As funções abaixo alteram o estado do botão pressionado e garantem que os
 # outros sejam desselecionados
-
-    def MR_Control_Config(self):
-        if(not self.ui.MR_Control_Button.isFlat()):
-            self.ui.MR_TypeSetter_Button.setFlat(False)
-            self.ui.MC_TypeSetter_Button.setFlat(False)
-            self.ui.Others_TypeSetter_Button.setFlat(False)
-            self.ui.MR_Control_Button.setFlat(True)
-            self.ui.MC_Control_Button.setFlat(False)
-            self.ui.Others_Control_Button.setFlat(False)
-        else:
-            self.ui.MR_Control_Button.setFlat(False)
-
-    def MC_Control_Config(self):
-        if(not self.ui.MC_Control_Button.isFlat()):
-            self.ui.MR_TypeSetter_Button.setFlat(False)
-            self.ui.MC_TypeSetter_Button.setFlat(False)
-            self.ui.Others_TypeSetter_Button.setFlat(False)
-            self.ui.MR_Control_Button.setFlat(False)
-            self.ui.MC_Control_Button.setFlat(True)
-            self.ui.Others_Control_Button.setFlat(False)
-        else:
-            self.ui.MC_Control_Button.setFlat(False)
-
-    def Others_Control_Config(self):
-        if(not self.ui.Others_Control_Button.isFlat()):
-            self.ui.MR_TypeSetter_Button.setFlat(False)
-            self.ui.MC_TypeSetter_Button.setFlat(False)
-            self.ui.Others_TypeSetter_Button.setFlat(False)
-            self.ui.MR_Control_Button.setFlat(False)
-            self.ui.MC_Control_Button.setFlat(False)
-            self.ui.Others_Control_Button.setFlat(True)
-        else:
-            self.ui.Others_Control_Button.setFlat(False)
 
     def MR_TypeSetter_Config(self):
         if(not self.ui.MR_TypeSetter_Button.isFlat()):
@@ -157,17 +115,6 @@ class Config_window(QConfigWindow):
         else:
             self.ui.Others_TypeSetter_Button.setFlat(False)
 
-    def control_Save_Configs(self):
-        # Salva as confgurações do controle em um arquivo .txt
-        config_file = open('configurations/control_config.txt', 'w')
-
-        for i in range(0, len(self._control_config_options)):
-            config_file.write(simplejson.dumps(self._control_config_options[i]))
-            config_file.write("\n")
-
-        Gui.QMessageBox.about(self, "Message Box", "Salvo com sucesso")
-        config_file.close()
-
     def typesetter_Save_Configs(self):
         # Salva as confgurações do teclado em um arquivo .txt
         config_file = open('configurations/typesetter_config.txt', 'w')
@@ -177,6 +124,12 @@ class Config_window(QConfigWindow):
             config_file.write("\n")
             config_file.flush()
         config_file.close()
+
+    def joystick_config(self, increment, option):
+        button_index = increment + option
+        self._joystick.configure_button(self._joystick.buttons[button_index])
+        #print(self._joystick.joystick_config["record"])
+
 
     def keyPressEvent(self, event):
         text = ""
