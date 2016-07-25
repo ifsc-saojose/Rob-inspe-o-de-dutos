@@ -47,7 +47,7 @@ class MainWindow(QMainWindow):
             except:
                 self._packet = [4, 4, 4]
             data = simplejson.dumps(self._packet)
-            self._sock.sendto(data, ("172.18.131.50", 5506))
+            self._sock.sendto(data, ("172.18.131.145", 5506))
 
         finally:
             self._timer.singleShot(50, self.Cam_Loop)
@@ -242,7 +242,7 @@ class MainWindow(QMainWindow):
 
         print((self._packet[0], self._packet[1], self._packet[2]))
         data = simplejson.dumps(self._packet)
-        self._sock.sendto(data, ("172.18.131.23", 5506))
+        self._sock.sendto(data, ("172.18.131.145", 5506))
 
     def load_Configs(self):
         # Lê as configurações dos arquivos e grava em duas listas
