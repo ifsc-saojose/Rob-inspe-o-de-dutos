@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import socket
+import netifaces as ni
 import serial
 import sys
 import glob
@@ -8,9 +9,19 @@ _sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 _porta_serial = serial.Serial()
 
 
-def Set_Address(UDP_IP='172.18.131.137', UDP_PORT=5505):
-    #_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)    # UDP
-    _sock.bind((UDP_IP, UDP_PORT))
+def Set_Address(UDP_PORT=5505):
+    interfaces = ni.interfaces()
+
+    for i in range(len(interfaces)):
+        try:
+            UDP_IP = ni.ifaddresses(interfaces[i])[2][0]['addr']
+            if(UDP_IP != '127.0.0.1'):
+                #_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)    # UDP
+                _sock.bind((UDP_IP, UDP_PORT))
+                break
+
+        except:
+            print('Interface ' + interfaces[i] + ' is down.')
 
 
 def Receive_File():
