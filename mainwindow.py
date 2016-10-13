@@ -4,7 +4,7 @@ import PyQt4.QtGui as GUI
 import PyQt4.QtCore as QtCore
 import Actions
 import Config_window
-import cv
+#import cv
 import time
 import simplejson
 import joystick
