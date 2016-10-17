@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import socket
 import netifaces as ni
-import serial
 import sys
 import glob
 
@@ -40,46 +39,3 @@ def Receive_File():
 
     # Fecha o arquivo .jpg
     img.close()
-
-
-def serial_ports():
-    """Lists serial ports
-
-    :raises EnvironmentError:
-        On unsupported or unknown platforms
-    :returns:
-        A list of available serial ports
-    """
-    if sys.platform.startswith('win'):
-        ports = ['COM' + str(i + 1) for i in range(256)]
-
-    elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
-        # this is to exclude your current terminal "/dev/tty"
-        ports = glob.glob('/dev/tty[A-Za-z]*')
-
-    elif sys.platform.startswith('darwin'):
-        ports = glob.glob('/dev/tty.*')
-
-    else:
-        raise EnvironmentError('Unsupported platform')
-
-    result = []
-    for port in ports:
-        try:
-            s = serial.Serial(port)
-            s.close()
-            result.append(port)
-        except (OSError, serial.SerialException):
-            pass
-    return result
-
-
-def Serial_Open(porta, baud_rate):
-    _porta_serial.port = porta
-    _porta_serial.baudrate = baud_rate
-    _porta_serial.timeout = 0.1
-    _porta_serial.open()
-
-
-def Serial_Read():
-    return _porta_serial.read()
